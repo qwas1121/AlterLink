@@ -9,7 +9,7 @@ type TimeLeft = {
 
 const CountDown: React.FC = () => {
   const calculateTimeLeft = () => {
-    const difference = +new Date("2023-05-15T13:15:30") - +new Date();
+    const difference = +new Date("2023-08-15T13:00:00") - +new Date();
     let timeLeft: TimeLeft = {
       days: "00",
       hours: "00",
