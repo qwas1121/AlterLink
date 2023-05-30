@@ -6,7 +6,8 @@ import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 import CountUp from "react-countup";
 import { useDencrypt } from "use-dencrypt-effect";
 
-import RoadMap from "./Roadmap";
+import CountDown from "./CountDown";
+// import RoadMap from "./Roadmap";
 const Main: React.FC = () => {
   //메인글씨
   const [value, setValue] = useDencrypt(" ");
@@ -531,61 +532,103 @@ const Main: React.FC = () => {
       {/* section04 */}
       <div id="section05" className="height100">
         <div className="sec_inner">
-          <ul className="cf">
-            <li>
-              <img
-                src={process.env.PUBLIC_URL + "/img/main/nft_img01.png"}
-                alt=""
-              />
-            </li>
-            <li>
-              <img
-                src={process.env.PUBLIC_URL + "/img/main/nft_img02.png"}
-                alt=""
-              />
-            </li>
-            <li>
-              <img
-                src={process.env.PUBLIC_URL + "/img/main/nft_img03.png"}
-                alt=""
-              />
-            </li>
-            <li>
-              <img
-                src={process.env.PUBLIC_URL + "/img/main/nft_img04.png"}
-                alt=""
-              />
-            </li>
-          </ul>
+          <div className="sec5_title">
+            <h2 className="font2">Joining AlterLink</h2>
+            <p>
+              A collection of 9,000. Link to the faction that suits
+              <br />
+              you among the three factions.
+            </p>
+          </div>
+          <div className="sec5_time">
+            <CountDown />
+          </div>
         </div>
       </div>
       {/* section05 */}
-      <RoadMap />
+      <div id="section06">
+        <div className="around_title sec_inner cf font2">
+          <h2>
+            <span>Connect</span>
+          </h2>
+          <p>
+            <span>
+              P-Pangaea is a large-scale project that connects everyone,
+              <br />
+              including the “Alter Link NFT” owners.
+              <br />
+              Own the “Alter Link NFT” and join P-Pangaea.
+            </span>
+          </p>
+        </div>
+        <div className="sec6_imgWrap">
+          <div className="bigTxt font2">
+            <p className="bigTxt01">projectPangaea</p>
+            <p className="bigTxt02">projectPangaea</p>
+          </div>
 
+          <div className="bigTxt lineTxt font2">
+            <p className="bigTxt01">projectPangaea</p>
+            <p className="bigTxt02">projectPangaea</p>
+          </div>
+          <img
+            src={process.env.PUBLIC_URL + "/img/main/sec04_img05.png"}
+            alt=""
+            className=""
+          />
+          <div className="plusBtn"></div>
+        </div>
+      </div>
       {/* section06 */}
       <div id="section07">
-        <div className="sec_inner">
-          <div className="faq">
-            <h2>
-              FAQ <span></span>
-            </h2>
-            <div className="text_wrap">
-              <p>AlterLink는 무엇입니까?</p>
-              <p>
-                Lockeys는 3,500 NFT(대체 불가능한 토큰) 모음으로 소유자를
-                <br />
-                Unlocked 커뮤니티의 구성원으로 인정하고, 정말 멋진 프로필 사진을
-                찍고,
-                <br />
-                여러 유틸리티 및 혜택에 액세스하고, NFT x DeFi의 일부가 될 수
-                있습니다.
-                <br />
-                생태계 유산.
-              </p>
+        <div className="around_title cf sec_inner font2">
+          <h2>
+            <span>Connect</span>
+          </h2>
+          <p>
+            <span>
+              P-Pangaea is a large-scale project that connects everyone,
+              <br />
+              including the “Alter Link NFT” owners.
+              <br />
+              Own the “Alter Link NFT” and join P-Pangaea.
+            </span>
+          </p>
+        </div>
+        <div className="sec7_cont">
+          <div className="left">
+            <div className="profile"></div>
+          </div>
+          <div className="right"></div>
+        </div>
+      </div>
+      {/* section07 */}
+      <div id="section08">
+        <div className="sec8_cont sec_inner">
+          <div className="one">
+            <div className="oneImg"></div>
+            <p className="oneTxt font2">atman</p>
+          </div>
+          <div className="two"></div>
+          <div className="three">
+            <p className="font2">
+              pRoJECT
+              <br />
+              <span>pangaea</span>
+              <br />
+              Connect
+            </p>
+            <div className="btns">
+              <div className="btn01">WEAR NOW</div>
+              <div className="btn02"></div>
+              <div className="btn03"></div>
             </div>
           </div>
         </div>
       </div>
+      {/* section08 */}
+      <div id="section09"></div>
+      {/* section09 */}
     </>
   );
 };
