@@ -1,79 +1,32 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
+import "./test.css";
+function App() {
+  const images = [
+    `${process.env.PUBLIC_URL}/img/main/sec06_img01.jpg`,
+    `${process.env.PUBLIC_URL}/img/main/sec06_img02.jpg`,
+    `${process.env.PUBLIC_URL}/img/main/sec06_img03.jpg`,
+  ];
 
-const MyComponent: React.FC = () => {
-  const ref = useRef<HTMLDivElement>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (ref.current) {
-        const scrollY = window.scrollY || window.pageYOffset;
-        const documentHeight =
-          document.documentElement.scrollHeight -
-          document.documentElement.clientHeight;
-        const scrollPercentage = scrollY / documentHeight;
-
-        const r = Math.floor(255 * scrollPercentage);
-        const g = Math.floor(255 - 255 * scrollPercentage);
-        const b = 0;
-
-        ref.current.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const handleFlip = () => {
+    setIsFlipped(!isFlipped);
+    setCurrentImageIndex((currentImageIndex + 1) % images.length);
+  };
 
   return (
     <div
-      id="section03"
-      style={{
-        height: "100vh",
-        position: "relative",
-        backgroundImage: `url(${
-          process.env.PUBLIC_URL + "/img/main/forceBg.png"
-        })`,
-        backgroundAttachment: "fixed",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
-      ref={ref}
+      className={`flip-container ${isFlipped ? "is-flipped" : ""}`}
+      onClick={handleFlip}
+      style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
     >
-      <div
-        className="forceWrap"
-        style={{ position: "sticky", height: "100vh" }}
-      >
-        <img
-          src={process.env.PUBLIC_URL + "/img/main/forceBg.png"}
-          alt=""
-          className="force_bg"
-        />
-        <img
-          src={process.env.PUBLIC_URL + "/img/main/forceBg.png"}
-          alt=""
-          className="force_bg"
-        />
-        <img
-          src={process.env.PUBLIC_URL + "/img/main/forceBg.png"}
-          alt=""
-          className="force_bg"
-        />
-        <img
-          src={process.env.PUBLIC_URL + "/img/main/forceBg.png"}
-          alt=""
-          className="force_bg"
-        />
-        <img
-          src={process.env.PUBLIC_URL + "/img/main/forceBg.png"}
-          alt=""
-          className="force_bg"
-        />
+      <div className="flipper">
+        <div className="front">{/* Front content */}</div>
+        <div className="back">{/* Back content */}</div>
       </div>
     </div>
   );
-};
+}
 
-export default MyComponent;
+export default App;

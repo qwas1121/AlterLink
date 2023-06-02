@@ -7,6 +7,8 @@ import CountUp from "react-countup";
 import { useDencrypt } from "use-dencrypt-effect";
 
 import CountDown from "./CountDown";
+
+import Mission from "./Mission";
 // import RoadMap from "./Roadmap";
 const Main: React.FC = () => {
   //메인글씨
@@ -20,7 +22,7 @@ const Main: React.FC = () => {
   }
   //scroll event (force)
   const forceRef = useRef<HTMLDivElement>(null); // Ref 객체 생성
-  const [scrollPosition, setScrollPosition] = useState(0);
+  // const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollClass, setScrollClass] = useState("");
   const [scrollPercent, setScrollPercent] = useState(0);
 
@@ -28,6 +30,18 @@ const Main: React.FC = () => {
   const numRef = useRef<HTMLDivElement>(null); // Ref 객체 생성
   const [num, setNum] = useState(false);
 
+  // 판게아프로젝트
+  const [pangaeaClass, setPangeaClass] = useState("atman");
+
+  function pangeaClassChange() {
+    if (pangaeaClass == "atman") {
+      setPangeaClass("looper");
+    } else if (pangaeaClass == "looper") {
+      setPangeaClass("hide");
+    } else {
+      setPangeaClass("atman");
+    }
+  }
   // mousemove event
   let x = 0;
   let y = 0;
@@ -50,10 +64,11 @@ const Main: React.FC = () => {
     window.requestAnimationFrame(loop);
     setPos({ x: mx, y: my });
   };
+
   useEffect(() => {
     //메인글씨
     setValue("Are you ready to link?");
-    function handleScroll() {
+    const handleScroll = () => {
       if (!forceRef.current) return;
 
       const sectionTop = forceRef.current.getBoundingClientRect().top;
@@ -67,27 +82,6 @@ const Main: React.FC = () => {
         (scrollPosition / (sectionHeight - viewportHeight)) * 100;
 
       setScrollPercent(scrollPercent);
-
-      // if (scrollPercent < 11) {
-      //   setScrollClass("scroll01");
-      // } else if (scrollPercent < 22) {
-      //   setScrollClass("scroll02");
-      // } else if (scrollPercent < 33) {
-      //   setScrollClass("scroll03");
-      // } else if (scrollPercent < 44) {
-      //   setScrollClass("scroll04");
-      // } else if (scrollPercent < 55) {
-      //   setScrollClass("scroll05");
-      // } else if (scrollPercent < 66) {
-      //   setScrollClass("scroll06");
-      // } else if (scrollPercent < 77) {
-      //   setScrollClass("scroll07");
-      // } else if (scrollPercent < 88) {
-      //   setScrollClass("scroll08");
-      // } else {
-      //   setScrollClass("scroll09");
-      // }
-
       //숫자
       if (
         numRef.current !== null &&
@@ -97,7 +91,7 @@ const Main: React.FC = () => {
       } else {
         setNum(false);
       }
-    }
+    };
 
     //mousemove event
     window.addEventListener("mousemove", handleMouseMove);
@@ -298,7 +292,7 @@ const Main: React.FC = () => {
               />
               <img
                 src={
-                  process.env.PUBLIC_URL + "/img/main/atman_people_shadow.png"
+                  process.env.PUBLIC_URL + "/img/main/looper_people_shadow.png"
                 }
                 alt=""
                 className="shadow"
@@ -352,7 +346,17 @@ const Main: React.FC = () => {
                     <span>Story</span>
                   </h4>
                   <p>
-                    <span>내용수정</span>
+                    <span>
+                      They dream of their own paradise, free from government
+                      control.
+                      <br />
+                      Self-centered, but living together with like-minded
+                      people,
+                      <br />
+                      It is a rebel force of the government,
+                      <br />
+                      and also a force of opposition to Hide.
+                    </span>
                   </p>
                 </div>
                 <img
@@ -377,7 +381,7 @@ const Main: React.FC = () => {
               />
               <img
                 src={
-                  process.env.PUBLIC_URL + "/img/main/atman_people_shadow.png"
+                  process.env.PUBLIC_URL + "/img/main/hide_people_shadow.png"
                 }
                 alt=""
                 className="shadow"
@@ -426,15 +430,12 @@ const Main: React.FC = () => {
                   </h4>
                   <p>
                     <span>
-                      They dream of their own paradise, free from government
-                      control.
+                      If you enlist in the government’s army, <br />
+                      You can make yourself stronger with a better machine,
                       <br />
-                      Self-centered, but living together with like-minded
-                      people,
-                      <br />
-                      It is a rebel force of the government,
-                      <br />
-                      and also a force of opposition to Hide.
+                      and you can achieve a rise in status. Its main task is to
+                      wipe <br />
+                      out criminals who do not comply with control.
                     </span>
                   </p>
                 </div>
@@ -452,8 +453,8 @@ const Main: React.FC = () => {
       {/* section03 */}
 
       <div id="section04">
-        <div className="blackBg"></div>
-        <div className="blackBg2"></div>
+        {/* <div className="blackBg"></div>
+        <div className="blackBg2"></div> */}
         <div className="sec_inner">
           <img
             src={process.env.PUBLIC_URL + "/img/main/sec04_top_line.png"}
@@ -546,7 +547,7 @@ const Main: React.FC = () => {
         </div>
       </div>
       {/* section05 */}
-      <div id="section06">
+      <div id="section06" className={pangaeaClass}>
         <div className="around_title sec_inner cf font2">
           <h2>
             <span>Connect</span>
@@ -563,23 +564,50 @@ const Main: React.FC = () => {
         </div>
         <div className="sec6_imgWrap">
           <div className="bigTxt font2">
-            <p className="bigTxt01">projectPangaea</p>
-            <p className="bigTxt02">projectPangaea</p>
+            <p className="bigTxt01">
+              <span>projectPangaea</span>
+              <span>projectPangaea</span>
+            </p>
+            <p className="bigTxt02">
+              <span>projectPangaea</span>
+              <span>projectPangaea</span>
+            </p>
           </div>
 
           <div className="bigTxt lineTxt font2">
-            <p className="bigTxt01">projectPangaea</p>
-            <p className="bigTxt02">projectPangaea</p>
+            <p className="bigTxt01">
+              <span>projectPangaea</span>
+              <span>projectPangaea</span>
+            </p>
+            <p className="bigTxt02">
+              <span>projectPangaea</span>
+              <span>projectPangaea</span>
+            </p>
           </div>
-          <img
-            src={process.env.PUBLIC_URL + "/img/main/sec04_img05.png"}
-            alt=""
-            className=""
-          />
-          <div className="plusBtn"></div>
+          <div className="imgBox">
+            <div className="flipCont"></div>
+            {/* <div className="filpCont">
+              <img
+                src={process.env.PUBLIC_URL + "/img/main/sec06_img01.jpg"}
+                alt=""
+                className={pangaeaClass == "atman" ? "front" : "back"}
+              />
+              <img
+                src={process.env.PUBLIC_URL + "/img/main/sec06_img02.jpg"}
+                alt=""
+                className={pangaeaClass == "looper" ? "front" : "back"}
+              />
+              <img
+                src={process.env.PUBLIC_URL + "/img/main/sec06_img03.jpg"}
+                alt=""
+                className={pangaeaClass == "hide" ? "front" : "back"}
+              />
+            </div> */}
+          </div>
+          <div className="plusBtn" onClick={pangeaClassChange}></div>
         </div>
       </div>
-      {/* section06 */}
+      {/* section06 판게아 프로젝트*/}
       <div id="section07">
         <div className="around_title cf sec_inner font2">
           <h2>
@@ -620,15 +648,29 @@ const Main: React.FC = () => {
             </p>
             <div className="btns">
               <div className="btn01">WEAR NOW</div>
-              <div className="btn02"></div>
-              <div className="btn03"></div>
+              <div className="btn02">
+                <img
+                  src={process.env.PUBLIC_URL + "/img/main/sec8_arrow.png"}
+                  alt=""
+                />
+              </div>
+              <div className="btn03">
+                <img
+                  src={
+                    process.env.PUBLIC_URL + "/img/main/sec8_btn_img_atman.png"
+                  }
+                  alt=""
+                  className=""
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
       {/* section08 */}
-      <div id="section09"></div>
+      <Mission />
       {/* section09 */}
+      <div id="section10"></div>
     </>
   );
 };
